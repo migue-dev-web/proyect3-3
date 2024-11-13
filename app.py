@@ -23,13 +23,13 @@ def create_db():
         CREATE TABLE IF NOT EXISTS users (
                     id SERIAL PRIMARY KEY,
                     username VARCHAR(255) NOT NULL,
-                    email VARCHAR(255) NOT NULL,
+                    email VARCHAR(255) NOT NULL UNIQUE,
                     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
                     );
 
                     INSERT INTO users (username, email)
                         VALUES ('ALICE', 'ALICE@GMAIL.COM')
-                        ON CONFLICT (username) DO NOTHING;
+                        ON CONFLICT (email) DO NOTHING;
     """)
         
         con.commit()
