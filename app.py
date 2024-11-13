@@ -58,7 +58,6 @@ def create_u():
 def index():
     con = conn()
     cursor = con.cursor()
-    create_db()
     cursor.execute("SELECT * FROM users")
     rows = cursor.fetchall()
 

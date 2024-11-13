@@ -3,25 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <title>Usuarios</title>
 </head>
 <body>
+    <div class="container-fluid">
+    <a href="" class="btn btn btn-primary">Añadir Usuario</a>
     <h1>Lista de Usuarios</h1>
-
+    <div class="modal fade"  id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
     <!-- Formulario para añadir un nuevo usuario -->
-    <h2>Añadir Usuario</h2>
-    <form method="POST" action="/add_user">
-        <label for="username">Nombre de Usuario:</label>
-        <input type="text" name="username" required>
-        <br>
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" name="email" required>
-        <br>
-        <button type="submit">Añadir Usuario</button>
-    </form>
+                <h2>Añadir Usuario</h2>
+    
+        </div>
+        <div class="modal-body">
+            <form method="POST" action="/add_user">
+                <label class="form-label for="username">Nombre de Usuario:</label>
+                <input class="form-control" type="text" name="username" required>
+                <br>
+                <label class="form-label for="email">Correo Electrónico:</label>
+                <input class="form-control" type="email" name="email" required>
+                <br>
+                <button class="btn btn-success" type="submit">Añadir Usuario</button>
+            </form>
+        </div>
 
+        </div>
+        </div>
+    </div>
     <h2>Lista de Usuarios</h2>
-    <table border="1">
+    <table class="table table-striped-columns table-hover">
         <thead>
             <tr>
                 <th>ID</th>
@@ -37,16 +50,17 @@
                     <td>{{ user[0] }}</td>
                     <td>{{ user[1] }}</td>
                     <td>{{ user[2] }}</td>
-                    <td><a href="{{ url_for('user_detail', user_id=user[0]) }}">Ver Detalles</a></td>
+                    <td><a class="btn btn-outline-primary" href="{{ url_for('user_detail', user_id=user[0]) }}">Ver Detalles</a></td>
                     <td>
                         <form method="POST" action="/delete_user/{{ user[0] }}" style="display:inline;">
-                            <button type="submit">Eliminar</button>
+                            <button class="btn btn-danger" type="submit">Eliminar</button>
                         </form>
                     </td>
                 </tr>
             {% endfor %}
         </tbody>
     </table>
-
+</div>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
 </body>
 </html>
