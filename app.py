@@ -51,7 +51,8 @@ def create_u():
     cursor.execute(query, (user, mail))
     db.commit()
     cursor.close()
-    db.close()  
+    db.close() 
+    return  redirect(url_for('index' )) 
 
 @app.route('/')
 def index():
