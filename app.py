@@ -50,7 +50,7 @@ def create_u():
 @app.route('/')
 def index():
     con = conn()
-    cursor = con.cursor
+    cursor = con.cursor()
 
     cursor.execute("SELECT * FROM users")
     rows = cursor.fetchall()
