@@ -95,3 +95,4 @@ def delete_user(user_id):
 
 if __name__ == "__main__":
     create_db()
+    app.run(debug=True, host="0.0.0.0.", port=os.getenv('PORT', default=5000))
