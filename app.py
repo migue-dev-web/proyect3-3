@@ -93,16 +93,16 @@ def user_detail(user_id):
 def delete_user(user_id):
     con = conn()
     cursor = con.cursor()
-    print(f"Detalles del usuario con ID: {user_id}")
+    
     query = "DELETE FROM users Where id = %s;"
-    cursor.execute(query, (user_id,))
+    cursor.execute(query, (user_id))
 
-    con.commit
+    con.commit()
     cursor.close()
     con.close()
 
-
-    #return redirect(url_for('index'))
+    
+    return redirect(url_for('index'))
 
 
 
