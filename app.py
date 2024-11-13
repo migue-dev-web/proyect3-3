@@ -95,7 +95,7 @@ def delete_user(user_id):
     cursor = con.cursor()
     
     query = "DELETE FROM users Where id = %s;"
-    cursor.execute(query, (user_id))
+    cursor.execute(query, (user_id,))
 
     con.commit()
     cursor.close()
