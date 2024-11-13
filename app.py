@@ -5,13 +5,14 @@ import psycopg2
 app = Flask(__name__)
 
 def conn():
-    return psycopg2.connect(
+    con = psycopg2.connect(
         host=os.getenv("DB_HOST"),
         user=os.getenv("DB_USER"),
         password=os.getenv("DB_PASSWORD"),
         dbname=os.getenv("DB_NAME"),
         port=os.getenv("DB_PORT", 5432)
     )
+    return con
 
 def create_db():
     conn = conn()
@@ -23,8 +24,11 @@ def create_db():
                    username VARCHAR(255) NOT NULL,
                    email VARCHAR(255) NOT NULL,
                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                   )
+                   );
 
+                   INSERT INTO users (username, email)
+                    VALUES ('ALICE', 'ALICE@GMAIL.COM')
+                    ON CONFLICT (username) DO NOTHING;
   """)
     conn.commit()
     cursor.close()
