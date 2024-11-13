@@ -8,8 +8,9 @@
 </head>
 <body>
     <div class="container-fluid">
-    <a href="" class="btn btn btn-primary">Añadir Usuario</a>
+    
     <h1>Lista de Usuarios</h1>
+    <a href="" class="btn btn btn-primary" data-bs-toggle="modal" data-bs-target="#add" >Añadir Usuario</a>
     <div class="modal fade"  id="add" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -20,10 +21,10 @@
         </div>
         <div class="modal-body">
             <form method="POST" action="/add_user">
-                <label class="form-label for="username">Nombre de Usuario:</label>
+                <label class="form-label" for="username">Nombre de Usuario:</label>
                 <input class="form-control" type="text" name="username" required>
                 <br>
-                <label class="form-label for="email">Correo Electrónico:</label>
+                <label class="form-label" for="email">Correo Electrónico:</label>
                 <input class="form-control" type="email" name="email" required>
                 <br>
                 <button class="btn btn-success" type="submit">Añadir Usuario</button>
@@ -33,7 +34,7 @@
         </div>
         </div>
     </div>
-    <h2>Lista de Usuarios</h2>
+    <br>
     <table class="table table-striped-columns table-hover">
         <thead>
             <tr>

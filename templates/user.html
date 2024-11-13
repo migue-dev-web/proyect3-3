@@ -3,24 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
     <title>Detalles del Usuario</title>
 </head>
 <body>
+    <div class="container-fluid">
     <h1>Detalles del Usuario</h1>
-    
+    <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit" >Editar usuario</a>
+    <br>
+    <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Editar Usuario</h3>
+                </div>
+                <div class="modal-body">
+                    <form method="POST">
+                        <label class="form-label" for="username">Nombre de Usuario:</label>
+                        <input class="form-control" type="text" name="username" value="{{ user[1] }}" required>
+                        <br>
+                        <label class="form-label" for="email">Correo Electrónico:</label>
+                        <input class="form-control" type="email" name="email" value="{{ user[2] }}" required>
+                        <br>
+                        <button type="submit" class="btn btn-success">Guardar Cambios</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Formulario para editar usuario -->
-    <form method="POST">
-        <label for="username">Nombre de Usuario:</label>
-        <input type="text" name="username" value="{{ user[1] }}" required>
-        <br>
-        <label for="email">Correo Electrónico:</label>
-        <input type="email" name="email" value="{{ user[2] }}" required>
-        <br>
-        <button type="submit">Guardar Cambios</button>
-    </form>
+    
 
     <h2>Detalles</h2>
-    <table border="1">
+    <table class="table table-striped-columns table-hover">
         <tr>
             <th>ID</th>
             <td>{{ user[0] }}</td>
@@ -36,5 +51,7 @@
     </table>
 
     <a href="/">Volver a la lista de usuarios</a>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</div>
 </body>
 </html>
