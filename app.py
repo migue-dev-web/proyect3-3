@@ -15,7 +15,7 @@ def conn():
     return con
 
 def create_db():
-    conn = conn()
+    con = conn()
     cursor = conn.cursor()
 
     cursor.execute("""
@@ -30,9 +30,10 @@ def create_db():
                     VALUES ('ALICE', 'ALICE@GMAIL.COM')
                     ON CONFLICT (username) DO NOTHING;
   """)
-    conn.commit()
+    
+    con.commit()
     cursor.close()
-    conn.close()
+    con.close()
 @app.route('/add_user', methods=['POST'])
 def create_u():
     db = conn()
