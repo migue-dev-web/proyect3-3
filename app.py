@@ -17,7 +17,7 @@ def conn():
 def create_db():
     try:
         con = conn()
-        cursor = conn.cursor()
+        cursor = con.cursor()
 
         cursor.execute("""
         CREATE TABLE IF NOT EXISTS users (
