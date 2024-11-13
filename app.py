@@ -57,7 +57,7 @@ def create_u():
 def index():
     con = conn()
     cursor = con.cursor()
-
+    create_db()
     cursor.execute("SELECT * FROM users")
     rows = cursor.fetchall()
 
@@ -104,5 +104,5 @@ def delete_user(user_id):
 
 
 if __name__ == "__main__":
-    create_db()
+    
     app.run(debug=True, host="0.0.0.0.", port=os.getenv('PORT', default=5000))
