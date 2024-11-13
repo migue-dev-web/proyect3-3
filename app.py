@@ -64,10 +64,10 @@ def index():
     return render_template('users.html', users=rows)
 
 @app.route('/user/<int:user_id>', methods=['GET', 'POST'])
-def user_detail():
+def user_detail(user_id):
     con = conn()
+    print(f"Detalles del usuario con ID: {user_id}")
     cursor = con.cursor
-    user_id =request.args.get['user_id']
     cursor.execute("SELECT * FROM users WHERE id = %s;", (user_id,))
     user = cursor.fetchone()
     
