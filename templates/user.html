@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalles del Usuario</title>
+</head>
+<body>
+    <h1>Detalles del Usuario</h1>
+    
+    <!-- Formulario para editar usuario -->
+    <form method="POST">
+        <label for="username">Nombre de Usuario:</label>
+        <input type="text" name="username" value="{{ user[1] }}" required>
+        <br>
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" name="email" value="{{ user[2] }}" required>
+        <br>
+        <button type="submit">Guardar Cambios</button>
+    </form>
+
+    <h2>Detalles</h2>
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <td>{{ user[0] }}</td>
+        </tr>
+        <tr>
+            <th>Nombre de Usuario</th>
+            <td>{{ user[1] }}</td>
+        </tr>
+        <tr>
+            <th>Correo Electrónico</th>
+            <td>{{ user[2] }}</td>
+        </tr>
+    </table>
+
+    <a href="/">Volver a la lista de usuarios</a>
+</body>
+</html>

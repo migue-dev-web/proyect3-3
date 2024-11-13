@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios</title>
+</head>
+<body>
+    <h1>Lista de Usuarios</h1>
+
+    <!-- Formulario para añadir un nuevo usuario -->
+    <h2>Añadir Usuario</h2>
+    <form method="POST" action="/add_user">
+        <label for="username">Nombre de Usuario:</label>
+        <input type="text" name="username" required>
+        <br>
+        <label for="email">Correo Electrónico:</label>
+        <input type="email" name="email" required>
+        <br>
+        <button type="submit">Añadir Usuario</button>
+    </form>
+
+    <h2>Lista de Usuarios</h2>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre de Usuario</th>
+                <th>Correo Electrónico</th>
+                <th>Detalles</th>
+                <th>Eliminar</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user[0] }}</td>
+                    <td>{{ user[1] }}</td>
+                    <td>{{ user[2] }}</td>
+                    <td><a href="{{ url_for('user_detail', user_id=user[0]) }}">Ver Detalles</a></td>
+                    <td>
+                        <form method="POST" action="/delete_user/{{ user[0] }}" style="display:inline;">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+</body>
+</html>
