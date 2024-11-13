@@ -67,7 +67,7 @@ def index():
 def user_detail(user_id):
     con = conn()
     print(f"Detalles del usuario con ID: {user_id}")
-    cursor = con.cursor
+    cursor = con.cursor()
     cursor.execute("SELECT * FROM users WHERE id = %s;", (user_id,))
     user = cursor.fetchone()
     
@@ -91,7 +91,7 @@ def user_detail(user_id):
 @app.route('/delete_user/<int:user_id>',methods=['POST'])
 def delete_user(user_id):
     con = conn()
-    cursor = con.cursor
+    cursor = con.cursor()
 
     query = "DELETE FROM users Where id = %s;"
     cursor.execute(query, (user_id,))
