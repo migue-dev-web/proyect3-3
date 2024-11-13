@@ -15,25 +15,30 @@ def conn():
     return con
 
 def create_db():
-    con = conn()
-    cursor = conn.cursor()
+    try:
+        con = conn()
+        cursor = conn.cursor()
 
-    cursor.execute("""
-    CREATE TABLE IF NOT EXISTS users (
-                   id SERIAL PRIMARY KEY,
-                   username VARCHAR(255) NOT NULL,
-                   email VARCHAR(255) NOT NULL,
-                   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
-                   );
+        cursor.execute("""
+        CREATE TABLE IF NOT EXISTS users (
+                    id SERIAL PRIMARY KEY,
+                    username VARCHAR(255) NOT NULL,
+                    email VARCHAR(255) NOT NULL,
+                    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+                    );
 
-                   INSERT INTO users (username, email)
-                    VALUES ('ALICE', 'ALICE@GMAIL.COM')
-                    ON CONFLICT (username) DO NOTHING;
-  """)
-    
-    con.commit()
-    cursor.close()
-    con.close()
+                    INSERT INTO users (username, email)
+                        VALUES ('ALICE', 'ALICE@GMAIL.COM')
+                        ON CONFLICT (username) DO NOTHING;
+    """)
+        
+        con.commit()
+        print("Tabla 'users' creada correctamente.")
+    except Exception as e:
+        print(f"Error al crear la tabla: {e}")
+    finally:
+        cursor.close()
+        con.close()
 @app.route('/add_user', methods=['POST'])
 def create_u():
     db = conn()
